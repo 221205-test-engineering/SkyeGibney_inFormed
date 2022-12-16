@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.Arrays;
 
 public class Automation {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         WebDriverManager.firefoxdriver().setup();
         WebDriver driver = new FirefoxDriver();
 

@@ -3,9 +3,7 @@ package dev.skyegibney.informed.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 
 public class Level2 extends BaseLevel {
@@ -18,7 +16,7 @@ public class Level2 extends BaseLevel {
         Select dropdownSelect = new Select(dropdownInput);
         dropdownSelect.selectByVisibleText(dropdown.getAttribute("innerHTML"));
 
-        checkboxInputs.forEach(checkbox -> checkbox.click());
+        checkboxInputs.forEach(WebElement::click);
 
         String radioValue = radio.getAttribute("innerHTML");
 
