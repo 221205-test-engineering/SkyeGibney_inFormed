@@ -28,15 +28,24 @@ public class Automation {
                 new Level10()
         };
 
-        Arrays.stream(levels).forEach(level -> {
+        boolean success = true;
+
+        for (int i = 0; i < levels.length; i++) {
             try {
-                level.solve();
+                if (!levels[i].solve()) {
+                    success = false;
+                    System.out.println(levels[i].getClass().getSimpleName() + "failed");
+                }
             }
             catch (Exception e) {
-                System.out.println("Exception while running " + level.getClass().getSimpleName());
                 e.printStackTrace();
+                System.out.println(levels[i].getClass().getSimpleName() + "failed with an exception");
             }
-        });
+        }
+
+        if (success) {
+            System.out.println("All levels passed!");
+        }
 
 //        Level2 level2 = new Level2();
 //        level2.solve();

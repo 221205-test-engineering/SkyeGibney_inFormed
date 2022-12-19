@@ -1,5 +1,6 @@
 package dev.skyegibney.informed.pages;
 
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,8 +19,7 @@ public abstract class BaseLevel {
         PageFactory.initElements(driver, this);
     }
 
-    public void solve() {
-        System.out.println("Solving " + this.getClass().getSimpleName() + "...");
+    public boolean solve() {
         driver.get(inFormedPath + "\\" + filepath);
 
         submitForm();
@@ -27,14 +27,22 @@ public abstract class BaseLevel {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.alertIsPresent());
 
-        if (driver.switchTo().alert().getText().contains("SUCCESS!!!")) {
-            System.out.println(this.getClass().getSimpleName() + " success!");
+        boolean success = false;
+        String className = this.getClass().getSimpleName();
+
+        try {
+            String alertText = driver.switchTo().alert().getText();
+
+            if (alertText.contains("SUCCESS!!!")) success = true;
+            else success = false;
+
+            driver.switchTo().alert().accept();
         }
-        else {
-            System.out.println(this.getClass().getSimpleName() + " failed :(");
+        catch (NoAlertPresentException e) {
+            System.out.println("Form was not submitted in " + className);
         }
 
-        driver.switchTo().alert().accept();
+        return success;
     }
 
     abstract void submitForm();
