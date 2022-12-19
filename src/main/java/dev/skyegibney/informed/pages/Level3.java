@@ -1,9 +1,9 @@
 package dev.skyegibney.informed.pages;
 
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
 import java.util.List;
@@ -15,9 +15,16 @@ public class Level3 extends BaseLevel {
 
     @Override
     void submitForm() {
-        inputs.forEach(input -> new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.elementToBeClickable(input))
-                .sendKeys("a"));
+        inputs.forEach(input ->
+            new FluentWait(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofMillis(20))
+                .ignoring(ElementNotInteractableException.class)
+                .until(driver -> {
+                    input.sendKeys("a");
+                    return input;
+                })
+        );
         submitButton.submit();
     }
 

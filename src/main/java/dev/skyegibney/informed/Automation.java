@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
-import java.util.Arrays;
 
 public class Automation {
     public static void main(String[] args) {
@@ -29,16 +28,16 @@ public class Automation {
                 new Level10()
         };
 
-        for (int i = 0; i < levels.length; i++) {
-            System.out.print(levels[i].getClass().getSimpleName());
+        for (var level: levels) {
+            System.out.print(level.getClass().getSimpleName());
 
             try {
-                if (levels[i].solve()) System.out.println(" OK");
+                if (level.solve()) System.out.println(" OK");
                 else System.out.println(" Failed");
             }
             catch (Exception e) {
-                e.printStackTrace();
                 System.out.println(" Exception");
+                System.out.println(e.toString().split("\n")[0]);
             }
         }
 
