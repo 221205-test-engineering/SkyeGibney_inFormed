@@ -25,7 +25,12 @@ public class Level2 extends BaseLevel {
         });
 
         String dateValue = date.getAttribute("innerHTML");
-        dateInput.sendKeys(dateValue);
+
+        // Convert from YYYY-MM-DD to MM-DD-YYYY
+        String[] splitDateValue = dateValue.split("-");
+        dateInput.sendKeys(splitDateValue[1]);
+        dateInput.sendKeys(splitDateValue[2]);
+        dateInput.sendKeys(splitDateValue[0]);
 
         dateInput.submit(); // shortcut to submit
     }

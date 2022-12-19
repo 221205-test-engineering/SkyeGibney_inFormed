@@ -38,6 +38,16 @@ public class Automation {
             }
         });
 
+//        Level2 level2 = new Level2();
+//        level2.solve();
+//
+//        try {
+//            Thread.sleep(5000);
+//        }
+//        catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
         driver.quit();
     }
 }
