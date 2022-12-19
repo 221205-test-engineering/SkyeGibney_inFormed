@@ -3,15 +3,15 @@ package dev.skyegibney.informed;
 import dev.skyegibney.informed.pages.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
 import java.util.Arrays;
 
 public class Automation {
     public static void main(String[] args) {
-        WebDriverManager.firefoxdriver().setup();
-        WebDriver driver = new FirefoxDriver();
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
 
         BaseLevel.inFormedPath = "file:///" + new File(".").getAbsolutePath() + "\\src\\main\\resources";
         BaseLevel.driver = driver;

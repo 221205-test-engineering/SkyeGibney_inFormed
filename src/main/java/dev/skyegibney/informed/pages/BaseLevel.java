@@ -2,6 +2,10 @@ package dev.skyegibney.informed.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public abstract class BaseLevel {
     public static String inFormedPath;
@@ -19,6 +23,9 @@ public abstract class BaseLevel {
         driver.get(inFormedPath + "\\" + filepath);
 
         submitForm();
+
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.alertIsPresent());
 
         if (driver.switchTo().alert().getText().contains("SUCCESS!!!")) {
             System.out.println(this.getClass().getSimpleName() + " success!");

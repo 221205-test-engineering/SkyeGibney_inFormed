@@ -3,6 +3,10 @@ package dev.skyegibney.informed.pages;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class Level7 extends BaseLevel {
     public Level7() {
@@ -11,13 +15,16 @@ public class Level7 extends BaseLevel {
 
     @Override
     void submitForm() {
-        driver.manage().window().setSize(new Dimension(700, 700));
-        largerButton.click();
+        driver.manage().window().setSize(new Dimension(1000, 1000));
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.elementToBeClickable(largerButton)).click();
 
         driver.manage().window().setSize(new Dimension(500, 500));
-        smallerButton.click();
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.elementToBeClickable(smallerButton)).click();
 
-        submitButton.click();
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.elementToBeClickable(submitButton)).click();
     }
 
     @FindBy(xpath="//button[1]")
