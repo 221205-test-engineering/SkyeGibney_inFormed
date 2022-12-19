@@ -25,6 +25,7 @@ public class Level10 extends BaseLevel {
         reviewButton.click();
 
         new WebDriverWait(driver, Duration.ofSeconds(60)).until(ExpectedConditions.alertIsPresent());
+        screenshotFile.delete();
     }
 
     @FindBy(xpath="//input[@type='file']")
