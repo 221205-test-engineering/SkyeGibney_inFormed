@@ -22,6 +22,7 @@ public class Automation {
                 new Level3(),
                 new Level4(),
                 new Level5(),
+                new Level6(),
                 new Level7(),
                 new Level8(),
                 new Level10()
