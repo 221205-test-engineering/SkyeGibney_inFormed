@@ -22,10 +22,12 @@ public class Level6 extends BaseLevel {
         driver.switchTo().window(tabs.get(1));
         GatePage gatePage1 = new GatePage(driver);
         gatePage1.gateButton.click();
+        driver.close();
 
         driver.switchTo().window(tabs.get(2));
         GatePage gatePage2 = new GatePage(driver);
         gatePage2.gateButton.click();
+        driver.close();
 
         driver.switchTo().window(tabs.get(0));
 
