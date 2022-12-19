@@ -16,7 +16,7 @@ public class Level3 extends BaseLevel {
     @Override
     void submitForm() {
         inputs.forEach(input -> new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOf(input))
+                .until(ExpectedConditions.elementToBeClickable(input))
                 .sendKeys("a"));
         submitButton.submit();
     }
